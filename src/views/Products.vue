@@ -132,7 +132,7 @@ export default {
   name: "App",
   data() {
     return {
-      API: "https://api.ardunic.com/v1/products?s=100",
+      API: "https://api.ardunic.com/v1/products?s=6",
       isFetched: false,
       products: [],
       imagePrefix: "https://ardunic-images.s3.eu-central-1.amazonaws.com/",

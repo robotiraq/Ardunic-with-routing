@@ -1,9 +1,7 @@
-module.export = {
+module.exports = {
+  content: ["./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {
-      colors: {
-        clifford: "#da373d",
-      },
-    },
+    extend: {},
   },
+  plugins: [],
 };

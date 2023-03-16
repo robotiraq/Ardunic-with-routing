@@ -2,11 +2,42 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
-    <router-link to="/products">Products</router-link>
+    <router-link v-if="isLoggedIn" to="/products">Products</router-link>
+    <button @click="toggleModal" v-show="!isLoggedIn">Sign in</button>
+    <button @click="logout" v-show="isLoggedIn">Log out</button>
   </nav>
   <router-view />
+  <div v-show="showModal">
+    <Modal header="whats up" @loged="logedIn" @close="toggleModal" />
+  </div>
 </template>
 
+<script>
+import Modal from "./components/Modal.vue";
+export default {
+  name: "App",
+  components: { Modal },
+  data() {
+    return {
+      showModal: false,
+      isLoggedIn: localStorage.getItem("isLoggedIn"),
+    };
+  },
+  methods: {
+    toggleModal() {
+      this.showModal = !this.showModal;
+    },
+    logedIn() {
+      this.isLoggedIn = true;
+    },
+    logout() {
+      localStorage.removeItem("isLoggedIn");
+      this.$router.push("/");
+      this.isLoggedIn = false;
+    },
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
